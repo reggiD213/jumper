@@ -15,7 +15,7 @@ public:
 	static Shader& createShader(const char* name, const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile = nullptr);
 	static Shader& getShader(const char* name);
 
-	static Level& createLevel(const char* name, const char* file);
+	static Level& createLevel(const char* name, const char* file, int gridWidth = 40, int gridHeight = 40);
 	static Level& getLevel(const char* name);
 
 private:

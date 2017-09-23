@@ -12,12 +12,14 @@ Level::~Level()
 {
 }
 
-void Level::create(const std::string& levelString) 
+void Level::create(const std::string& levelString, int width, int height) 
 {
 	this->levelString = levelString;
+	this->width = width;
+	this->height = height;
 }
 
-void Level::createEntities()
+void Level::createGameObjects()
 {
 	int x = 0;
 	int y = 0;
@@ -53,7 +55,7 @@ void Level::createEntities()
 			textureName = "invalid";
 			break;
 		}
-		std::shared_ptr<Block> block = std::make_shared<Block>(Block(c, ResourceManager::getTexture(textureName), { x * width, y * height }, { width,height }, { 1,1,1 }, 0.0f));
+		std::shared_ptr<Block> block = std::make_shared<Block>(Block(c, ResourceManager::getTexture(textureName), { x * width, y * height }, { width,height }));
 		blocks.push_back(block);
 		x++;
 	}

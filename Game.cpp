@@ -40,11 +40,11 @@ Game::Game(int width, int height)
 	renderer = std::make_unique<SpriteRenderer>(spriteShader);
 
 	// Game Objects
-	player = std::make_unique<Player>(Player(ResourceManager::getTexture("player"), { 0, height - 80 }, { 40, 40 }, { 1, 1, 1 }, 0.0f, { 0, 0 }));
+	player = std::make_unique<Player>(Player(ResourceManager::getTexture("player"), { 0, height - 80 }, { 40, 40 }));
 
 	// Create Level and Objects from level
 	ResourceManager::createLevel("test", "resources/test.txt");
-	ResourceManager::getLevel("test").createEntities();
+	ResourceManager::getLevel("test").createGameObjects();
 	for (auto block : ResourceManager::getLevel("test").blocks)
 	{
 		gameObjects.push_back(block);

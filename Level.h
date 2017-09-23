@@ -12,14 +12,14 @@ class Level
 private:
 	std::string levelString;
 
-	static constexpr int width = 40;
-	static constexpr int height = 40;
+	int width;
+	int height;
 public:
 	Level();
 	~Level();
 
-	void create(const std::string& levelString);
-	void createEntities();
+	void create(const std::string& levelString, int width, int height);
+	void createGameObjects();
 
 	void update();
 

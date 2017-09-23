@@ -84,13 +84,13 @@ Shader& ResourceManager::getShader(const char* name)
 	return shaders[name];
 }
 
-Level& ResourceManager::createLevel(const char* name, const char* file)
+Level& ResourceManager::createLevel(const char* name, const char* file, int gridWidth, int gridHeight)
 {
 	std::ifstream levelFile(file);
 	std::stringstream levelStringStream;
 	levelStringStream << levelFile.rdbuf();
 	levelFile.close();
-	levels[name].create(levelStringStream.str());
+	levels[name].create(levelStringStream.str(), gridWidth, gridHeight);
 	return levels[name];
 }
 
