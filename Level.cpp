@@ -53,7 +53,7 @@ void Level::createEntities()
 			textureName = "invalid";
 			break;
 		}
-		std::shared_ptr<Block> block = std::make_shared<Block>(Block(c, { x * width, y * height }, { width,height }, { 0,0 }, { 1,1,1 }, 0.0f, ResourceManager::getTexture(textureName)));
+		std::shared_ptr<Block> block = std::make_shared<Block>(Block(c, ResourceManager::getTexture(textureName), { x * width, y * height }, { width,height }, { 1,1,1 }, 0.0f));
 		blocks.push_back(block);
 		x++;
 	}

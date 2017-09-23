@@ -40,14 +40,14 @@ Game::Game(int width, int height)
 	renderer = std::make_unique<SpriteRenderer>(spriteShader);
 
 	// Game Objects
-	player = std::make_unique<Player>(Player({ 0, height - 80 }, { 40, 40 }, { 0, 0 }, { 1, 1, 1 }, 0.0f, ResourceManager::getTexture("player")));
+	player = std::make_unique<Player>(Player(ResourceManager::getTexture("player"), { 0, height - 80 }, { 40, 40 }, { 1, 1, 1 }, 0.0f, { 0, 0 }));
 
 	// Create Level and Objects from level
 	ResourceManager::createLevel("test", "resources/test.txt");
 	ResourceManager::getLevel("test").createEntities();
 	for (auto block : ResourceManager::getLevel("test").blocks)
 	{
-		entities.push_back(block);
+		gameObjects.push_back(block);
 	}
 }
 
@@ -71,11 +71,11 @@ void Game::input()
 	player->run(Input::keys[GLFW_KEY_LEFT_SHIFT]);
 
 	if (Input::keys[GLFW_KEY_A] && Input::keys[GLFW_KEY_D] || !Input::keys[GLFW_KEY_A] && !Input::keys[GLFW_KEY_D])
-		player->setForceDirection(Direction::STOP);
+		player->setForceDirection(Player::Direction::STOP);
 	else if (Input::keys[GLFW_KEY_A])
-		player->setForceDirection(Direction::LEFT);
+		player->setForceDirection(Player::Direction::LEFT);
 	else if (Input::keys[GLFW_KEY_D])
-		player->setForceDirection(Direction::RIGHT);
+		player->setForceDirection(Player::Direction::RIGHT);
 }
 
 void Game::update()

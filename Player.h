@@ -18,7 +18,7 @@ private:
 
 
 public:
-	Player(glm::vec2 pos, glm::vec2 size, glm::vec2 vel, glm::vec3 color, GLfloat rot, Texture2D& texture);
+	Player(Texture2D& texture, glm::vec2 pos, glm::vec2 size, glm::vec3 color, GLfloat rot, glm::vec2 vel);
 
 	virtual void update(float dt);
 

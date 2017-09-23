@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-Player::Player(glm::vec2 pos, glm::vec2 size, glm::vec2 vel, glm::vec3 color, GLfloat rot, Texture2D& texture)
-	: Entity(pos, size, vel, color, rot, texture)
+Player::Player(Texture2D& texture, glm::vec2 pos, glm::vec2 size, glm::vec3 color, GLfloat rot, glm::vec2 vel)
+	: Entity(texture, pos, size, color, rot, vel)
 {
 
 }
@@ -52,5 +52,5 @@ void Player::run(bool on)
 
 void Player::setForceDirection(Direction dir)
 {
-	forceDir.x = static_cast<float>(dir);
+	forceDir.x = (float)dir;
 }

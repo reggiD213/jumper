@@ -3,35 +3,30 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-#include "SpriteRenderer.h"
+#include "GameObject.h"
+
 #include "Texture2D.h"
 
-enum class Direction
-{
-	LEFT = -1,
-	RIGHT = 1,
-	STOP = 0
-};
-
-class Entity
+class Entity : public GameObject
 {
 public:
-	glm::vec2 pos;
-	glm::vec2 size;
-	glm::vec2 vel;
-	glm::vec3 color;
-	GLfloat rot;
-	Texture2D& texture;
+	enum class Direction
+	{
+		LEFT = -1,
+		RIGHT = 1,
+		STOP = 0
+	};
 
-	Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel, glm::vec3 color, GLfloat rot, Texture2D& texture);
-
-	void draw(SpriteRenderer& renderer);
+public:
+	Entity(Texture2D& texture, glm::vec2 pos, glm::vec2 size, glm::vec3 color, GLfloat rot, glm::vec2 vel);
 
 	virtual void update(float dt) = 0;
 
 	virtual void setForceDirection(Direction dir) = 0;
 	virtual void run(bool on = true) = 0;
-private:
+
+protected:
+	glm::vec2 vel;
 
 };
 

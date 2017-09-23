@@ -39,6 +39,6 @@ private:
 	std::unique_ptr<SpriteRenderer> renderer;
 
 	std::unique_ptr<Entity> player;
-	std::vector<std::shared_ptr<Entity>> entities;
+	std::vector<std::shared_ptr<GameObject>> gameObjects;
 };
 
