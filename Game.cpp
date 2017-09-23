@@ -76,6 +76,10 @@ void Game::input()
 		player->setForceDirection(Player::Direction::LEFT);
 	else if (Input::keys[GLFW_KEY_D])
 		player->setForceDirection(Player::Direction::RIGHT);
+	if (Input::keys[GLFW_KEY_SPACE])
+		player->jump(dt);
+	if (Input::keys[GLFW_KEY_R])
+		player->reset({ 0, height - 80 }, { 40, 40 });
 }
 
 void Game::update()

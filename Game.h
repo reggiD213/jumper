@@ -8,6 +8,7 @@
 
 #include "SpriteRenderer.h"
 #include "Entity.h"
+#include "Player.h"
 
 
 
@@ -38,7 +39,7 @@ private:
 
 	std::unique_ptr<SpriteRenderer> renderer;
 
-	std::unique_ptr<Entity> player;
+	std::unique_ptr<Player> player;
 	std::vector<std::shared_ptr<GameObject>> gameObjects;
 };
 

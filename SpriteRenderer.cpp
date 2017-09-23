@@ -24,15 +24,17 @@ void SpriteRenderer::drawSprite(Texture2D& texture, glm::vec2 pos, glm::vec2 siz
 	glm::mat4 model;
 	// translate
 	model = glm::translate(model, glm::vec3(pos, 0.0f));
+	
+	
 	// rotate (move origin to center, rotate, move origin back)
 	model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
 	model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+	
 	// scale
 	model = glm::scale(model, glm::vec3(size, 1.0f));
 	shader.uniformMat4("model", model);
-
-	
+		
 	shader.uniformVec3("spriteColor", color);
 	
 

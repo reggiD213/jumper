@@ -27,6 +27,7 @@ public:
 
 protected:
 	glm::vec2 vel;
+	glm::vec2 acc;
 
 };
 

@@ -5,11 +5,15 @@
 Player::Player(Texture2D& texture, glm::vec2 pos, glm::vec2 size, glm::vec3 color, GLfloat rot, glm::vec2 vel)
 	: Entity(texture, pos, size, color, rot, vel)
 {
-
+	acc = { 0,0 };
 }
+
+
 
 void Player::update(float dt)
 {
+	/*
+	*/
 	//force = 1500;
 	//friction = 1000;
 	// Running modifier
@@ -43,6 +47,25 @@ void Player::update(float dt)
 	
 	// move player
 	pos.x += vel.x * dt;
+	pos.y -= vel.y * dt + 1 / 2 * acc.y * dt *dt;
+	vel.y += acc.y * dt;
+
+}
+
+
+void Player::jump(float dt)
+{
+	
+	vel.y = initialVelocity;
+	acc.y = gravitationalConstant;
+}
+
+void Player::reset(glm::vec2 pos, glm::vec2 size)
+{
+	this->pos = pos;
+	this->size = size;
+	vel = { 0,0 };
+	acc = { 0,0 };
 }
 
 void Player::run(bool on)
