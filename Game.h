@@ -9,20 +9,18 @@
 #include "SpriteRenderer.h"
 #include "Entity.h"
 
-enum class GameState {
-	MENU, ACTIVE, QUIT
-};
 
 
 class Game
 {
+private:
+	enum class GameState {
+		MENU, ACTIVE, QUIT
+	};
 public:
-	// Constructor/Destructor (evtl. unnecessary since we can initialize variables in c++11 directly)
-	Game();
+	Game(int width, int height);
 	~Game();
-
-	
-	void init(int width, int height);
+		
 	void fps(double getTime);
 	void input();
 	void update();
@@ -30,11 +28,11 @@ public:
 
 private:
 	// Delta Time
-	float dt = 0.0f, last = 0.0f;
+	float dt, last;
 	// Viewport Dimensions
-	int width = 0, height = 0;
+	const int width, height;
 	// Current Game State
-	GameState state = GameState::MENU;
+	GameState state;
 
 	GLuint VAO;
 
@@ -42,6 +40,5 @@ private:
 
 	std::unique_ptr<Entity> player;
 	std::vector<std::shared_ptr<Entity>> entities;
-	//std::map<std::string, std::unique_ptr<Entity>> entities;
 };
 

@@ -15,19 +15,13 @@
 #include "Block.h"
 #include "Level.h"
 
-Game::Game()
+Game::Game(int width, int height)
+	: width(width),
+	  height(height),
+	  dt(0.0f),
+	  last(0.0f),
+	  state(GameState::MENU)
 {
-}
-
-Game::~Game()
-{
-}
-
-void Game::init(int width, int height)
-{
-	this->width = width;
-	this->height = height;
-
 	// Shaders
 	Shader& spriteShader = ResourceManager::createShader("sprite", "shaders/sprite.vert", "shaders/sprite.frag");
 	glm::mat4 projection = glm::ortho(0.0f, (GLfloat)width, (GLfloat)height, 0.0f, -1.0f, 1.0f);
@@ -55,6 +49,10 @@ void Game::init(int width, int height)
 	{
 		entities.push_back(block);
 	}
+}
+
+Game::~Game()
+{
 }
 
 void Game::fps(double getTime)

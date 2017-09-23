@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono> //for sleep
 #include <thread>
+#include <assert.h>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -11,16 +12,12 @@
 bool glfwSetup();
 bool glewAndOpenGLSetup();
 
-void error(const char* msg);
 static void error_callback(int err, const char* description);
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-const int WIDTH = 1280, HEIGHT = 720;
+constexpr int WIDTH = 1280, HEIGHT = 720;
 int width, height;
 
 GLFWwindow* window;
-
-Game game;
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +27,7 @@ int main(int argc, char *argv[])
 	if (!glewAndOpenGLSetup())
 		return -1;
 	
-	game.init(width, height);
+	Game game(width, height);
 
 	// Gameloop
 	while (!glfwWindowShouldClose(window))
@@ -43,13 +40,12 @@ int main(int argc, char *argv[])
 		glfwSwapBuffers(window);
 
 		// Simulate framedrops
-		std::chrono::milliseconds timespan(16);
-		std::this_thread::sleep_for(timespan);
+		//std::chrono::milliseconds timespan(16);
+		//std::this_thread::sleep_for(timespan);
 	}
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	return 0;
 }
 
 // Setup functions
@@ -57,7 +53,7 @@ bool glfwSetup()
 {
 	if (!glfwInit())
 	{
-		std::cerr << "Error initializing glfw!" << std::endl;
+		assert("Error initializing glfw!");
 		return false;
 	}
 	glfwSetErrorCallback(error_callback);
@@ -70,7 +66,7 @@ bool glfwSetup()
 	window = glfwCreateWindow(WIDTH, HEIGHT, "Jumper", nullptr, nullptr);
 	if (!window)
 	{
-		std::cerr << "Error creating window!" << std::endl;
+		assert("Error creating window!");
 		return false;
 	}
 	glfwMakeContextCurrent(window);
@@ -85,7 +81,7 @@ bool glewAndOpenGLSetup()
 	glewExperimental = true;
 	if (glewInit() != GLEW_OK)
 	{
-		std::cerr << "Error initializing glew!" << std::endl;
+		assert("Error initializing glew!");
 		return false;
 	}
 	// Discard glewInit() bug error msg.
@@ -105,5 +101,5 @@ bool glewAndOpenGLSetup()
 // Callbacks
 static void error_callback(int err, const char* description)
 {
-	std::cerr << description << std::endl;
+	assert(description);
 }
