@@ -35,13 +35,13 @@ void Game::init(int width, int height)
 	spriteShader.uniformMat4("projection", projection);
 
 	// Textures
-	ResourceManager::createTexture("background", "textures/space.jpg");
-	ResourceManager::createTexture("player", "textures/player.png", true);
-	ResourceManager::createTexture("grassLeft", "textures/grassLeft.png", true);
-	ResourceManager::createTexture("grassMiddle", "textures/grassMid.png", true);
-	ResourceManager::createTexture("grassRight", "textures/grassRight.png", true);
-	ResourceManager::createTexture("grass", "textures/grass.png", true);
-	ResourceManager::createTexture("brick", "textures/brick.jpg");
+	ResourceManager::createTexture("background", "textures/background.jpg");
+	ResourceManager::createTexture("player", "textures/entities/p1_front.png", true);
+	ResourceManager::createTexture("grassLeft", "textures/blocks/grassLeft.png", true);
+	ResourceManager::createTexture("grassMiddle", "textures/blocks/grassMid.png", true);
+	ResourceManager::createTexture("grassRight", "textures/blocks/grassRight.png", true);
+	ResourceManager::createTexture("grass", "textures/blocks/grass.png", true);
+	ResourceManager::createTexture("brick", "textures/blocks/brickWall.png", true);
 	// Renderers
 	renderer = std::make_unique<SpriteRenderer>(spriteShader);
 
@@ -93,7 +93,7 @@ void Game::render()
 
 	ResourceManager::getShader("sprite").use();
 
-	//renderer->drawSprite(ResourceManager::getTexture("background"), glm::vec2(0, 0), glm::vec2(width, height));
+	renderer->drawSprite(ResourceManager::getTexture("background"), glm::vec2(0, 0), glm::vec2(width, height));
 
 	//for (int i = 0; i < 100; i++) // performance? draw every entity a 100 times!
 	ResourceManager::getLevel("test").draw(*renderer);
