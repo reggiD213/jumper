@@ -47,6 +47,8 @@ void SpriteRenderer::drawSprite(Texture2D& texture, glm::vec2 pos, glm::vec2 siz
 	glBindVertexArray(0);
 }
 
+
+
 void SpriteRenderer::init()
 {
 	GLuint VBO, EBO;

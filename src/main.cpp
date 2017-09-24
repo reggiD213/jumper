@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	// Gameloop
 	while (!glfwWindowShouldClose(window))
 	{
-		game.fps(glfwGetTime());
+		game.fps((float)glfwGetTime());
 		glfwPollEvents();
 		game.input();
 		game.update();

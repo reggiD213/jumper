@@ -6,6 +6,7 @@ class Input
 {
 public:
 	static bool keys[1024];
+	static bool keysProcessed[1024];
 
 	Input();
 	~Input();

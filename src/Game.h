@@ -7,8 +7,11 @@
 #include <GLFW/glfw3.h>
 
 #include "SpriteRenderer.h"
+#include "RectRenderer.h"
+#include "TextRenderer.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Debugger.h"
 
 
 
@@ -21,8 +24,8 @@ private:
 public:
 	Game(int width, int height);
 	~Game();
-		
-	void fps(double getTime);
+	
+	void fps(float getTime);
 	void input();
 	void update();
 	void render();
@@ -34,12 +37,15 @@ private:
 	const int width, height;
 	// Current Game State
 	GameState state;
+	Debugger dbg;
 
 	GLuint VAO;
 
 	std::unique_ptr<SpriteRenderer> renderer;
+	std::unique_ptr<RectRenderer> rectRenderer;
+	std::unique_ptr<TextRenderer> textRenderer;
 
 	std::unique_ptr<Player> player;
-	std::vector<std::shared_ptr<GameObject>> gameObjects;
+	std::vector<GameObject> gameObjects;
 };
 

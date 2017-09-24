@@ -69,16 +69,7 @@ std::string Level::getLevelString()
 
 void Level::update()
 {
-	for (auto block : blocks)
-	{
-		for (int x = -width; x <= width; x += width)
-		{
-			for (int y = -height; y <= height; y += height)
-			{
 
-			}
-		}
-	}
 }
 
 void Level::draw(SpriteRenderer& renderer)
